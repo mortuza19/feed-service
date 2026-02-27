@@ -6,6 +6,7 @@ import { AppService } from './app.service';
 import { FeedController } from './feed/feed.controller';
 import { FeedService } from './feed/feed.service';
 import { DatabaseModule } from './db/database.module';
+import { RedisProvider } from './redis.provider';
 
 @Module({
   imports: [
@@ -15,6 +16,7 @@ import { DatabaseModule } from './db/database.module';
     DatabaseModule,
   ],
   controllers: [AppController, FeedController],
-  providers: [AppService, FeedService],
+  providers: [AppService, RedisProvider, FeedService],
+  exports: ['REDIS_CLIENT'],
 })
 export class AppModule {}
